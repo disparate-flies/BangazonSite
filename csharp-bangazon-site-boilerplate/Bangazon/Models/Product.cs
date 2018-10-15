@@ -34,6 +34,10 @@ namespace Bangazon.Models
     [Required]
     public ApplicationUser User { get; set; }
 
+    public string UserId { get; set; }
+
+    public string City { get; set; }
+
     [Required]
     [Display(Name="Product Category")]
     public int ProductTypeId { get; set; }
