@@ -20,12 +20,15 @@ namespace Bangazon.Models
     public string Description { get; set; }
 
     [Required]
+    public int Quantity { get; set; }
+
+    [Required]
     [StringLength(55, ErrorMessage="Please shorten the product title to 55 characters")]
     public string Title { get; set; }
 
     [Required]
     [DisplayFormat(DataFormatString = "{0:C}")]
-    [NonLuxuryProduct]
+    //[/*NonLuxuryProduct*/]
     public double Price { get; set; }
 
     [Required]
