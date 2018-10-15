@@ -79,7 +79,7 @@ namespace Bangazon.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "8c7ad694-6abd-4ba8-a121-93a5cf64d2a4", AccessFailedCount = 0, ConcurrencyStamp = "a385f608-5f15-43cb-affa-5482733db452", Email = "admin@admin.com", EmailConfirmed = true, FirstName = "admin", LastName = "admin", LockoutEnabled = false, NormalizedEmail = "ADMIN@ADMIN.COM", NormalizedUserName = "ADMIN@ADMIN.COM", PasswordHash = "AQAAAAEAACcQAAAAEF6AX7PirxZwWehkhQVGs+BT10CZLZapsZfcHKHCxki6kA2aufOQl1dzql1Ykxxt2A==", PhoneNumberConfirmed = false, SecurityStamp = "de3ec1a7-c4c7-4057-a2b2-c0209065f0fa", StreetAddress = "123 Infinity Way", TwoFactorEnabled = false, UserName = "admin@admin.com" }
+                        new { Id = "d1344930-72b7-4b3f-90b5-de2009898710", AccessFailedCount = 0, ConcurrencyStamp = "30c29004-8729-4f9e-9044-da5b9a97d651", Email = "admin@admin.com", EmailConfirmed = true, FirstName = "admin", LastName = "admin", LockoutEnabled = false, NormalizedEmail = "ADMIN@ADMIN.COM", NormalizedUserName = "ADMIN@ADMIN.COM", PasswordHash = "AQAAAAEAACcQAAAAELU/U/hHbigi6p9Uz6js4729rCB8GUXEhVCYOpDykyAvTYIsJyzN6YCYnq5Ffj2guQ==", PhoneNumberConfirmed = false, SecurityStamp = "83c1f1f2-1bac-4915-a45d-af696a6cf7d7", StreetAddress = "123 Infinity Way", TwoFactorEnabled = false, UserName = "admin@admin.com" }
                     );
                 });
 
@@ -97,7 +97,8 @@ namespace Bangazon.Migrations
 
                     b.Property<int?>("PaymentTypeId");
 
-                    b.Property<string>("UserId");
+                    b.Property<string>("UserId")
+                        .IsRequired();
 
                     b.HasKey("OrderId");
 
@@ -108,8 +109,8 @@ namespace Bangazon.Migrations
                     b.ToTable("Order");
 
                     b.HasData(
-                        new { OrderId = 1, DateCompleted = new DateTime(2018, 10, 15, 14, 59, 34, 44, DateTimeKind.Local), DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), PaymentTypeId = 3 },
-                        new { OrderId = 2, DateCompleted = new DateTime(2018, 10, 15, 14, 59, 34, 49, DateTimeKind.Local), DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), PaymentTypeId = 1 }
+                        new { OrderId = 1, DateCompleted = new DateTime(2018, 10, 15, 16, 2, 11, 738, DateTimeKind.Local), DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), PaymentTypeId = 3, UserId = "d1344930-72b7-4b3f-90b5-de2009898710" },
+                        new { OrderId = 2, DateCompleted = new DateTime(2018, 10, 15, 16, 2, 11, 742, DateTimeKind.Local), DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), PaymentTypeId = 1, UserId = "d1344930-72b7-4b3f-90b5-de2009898710" }
                     );
                 });
 
@@ -160,9 +161,9 @@ namespace Bangazon.Migrations
                     b.ToTable("PaymentType");
 
                     b.HasData(
-                        new { PaymentTypeId = 1, AccountNumber = "86753095551212", DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Description = "American Express", UserId = "8c7ad694-6abd-4ba8-a121-93a5cf64d2a4" },
-                        new { PaymentTypeId = 2, AccountNumber = "4102948572991", DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Description = "Discover", UserId = "8c7ad694-6abd-4ba8-a121-93a5cf64d2a4" },
-                        new { PaymentTypeId = 3, AccountNumber = "1234567891234", DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Description = "Southwest", UserId = "8c7ad694-6abd-4ba8-a121-93a5cf64d2a4" }
+                        new { PaymentTypeId = 1, AccountNumber = "86753095551212", DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Description = "American Express", UserId = "d1344930-72b7-4b3f-90b5-de2009898710" },
+                        new { PaymentTypeId = 2, AccountNumber = "4102948572991", DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Description = "Discover", UserId = "d1344930-72b7-4b3f-90b5-de2009898710" },
+                        new { PaymentTypeId = 3, AccountNumber = "1234567891234", DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Description = "Southwest", UserId = "d1344930-72b7-4b3f-90b5-de2009898710" }
                     );
                 });
 
@@ -204,8 +205,8 @@ namespace Bangazon.Migrations
                     b.ToTable("Product");
 
                     b.HasData(
-                        new { ProductId = 1, DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Description = "Plays CDs", Price = 20.0, ProductTypeId = 2, Quantity = 3, Title = "CD Player", UserId = "8c7ad694-6abd-4ba8-a121-93a5cf64d2a4" },
-                        new { ProductId = 2, DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Description = "For Sitting", Price = 400.0, ProductTypeId = 1, Quantity = 5, Title = "Brown Leather Couch", UserId = "8c7ad694-6abd-4ba8-a121-93a5cf64d2a4" }
+                        new { ProductId = 1, DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Description = "Plays CDs", Price = 20.0, ProductTypeId = 2, Quantity = 3, Title = "CD Player", UserId = "d1344930-72b7-4b3f-90b5-de2009898710" },
+                        new { ProductId = 2, DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Description = "For Sitting", Price = 400.0, ProductTypeId = 1, Quantity = 5, Title = "Brown Leather Couch", UserId = "d1344930-72b7-4b3f-90b5-de2009898710" }
                     );
                 });
 
@@ -351,7 +352,8 @@ namespace Bangazon.Migrations
 
                     b.HasOne("Bangazon.Models.ApplicationUser", "User")
                         .WithMany("Orders")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Bangazon.Models.OrderProduct", b =>

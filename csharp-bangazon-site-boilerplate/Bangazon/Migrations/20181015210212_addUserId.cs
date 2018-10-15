@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Bangazon.Migrations
 {
-    public partial class seedData : Migration
+    public partial class addUserId : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -231,7 +231,7 @@ namespace Bangazon.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     DateCreated = table.Column<DateTime>(nullable: false, defaultValueSql: "GETDATE()"),
                     DateCompleted = table.Column<DateTime>(nullable: true),
-                    UserId = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: false),
                     PaymentTypeId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -248,7 +248,7 @@ namespace Bangazon.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -280,7 +280,7 @@ namespace Bangazon.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "StreetAddress", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "8c7ad694-6abd-4ba8-a121-93a5cf64d2a4", 0, "a385f608-5f15-43cb-affa-5482733db452", "admin@admin.com", true, "admin", "admin", false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEF6AX7PirxZwWehkhQVGs+BT10CZLZapsZfcHKHCxki6kA2aufOQl1dzql1Ykxxt2A==", null, false, "de3ec1a7-c4c7-4057-a2b2-c0209065f0fa", "123 Infinity Way", false, "admin@admin.com" });
+                values: new object[] { "d1344930-72b7-4b3f-90b5-de2009898710", 0, "30c29004-8729-4f9e-9044-da5b9a97d651", "admin@admin.com", true, "admin", "admin", false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAELU/U/hHbigi6p9Uz6js4729rCB8GUXEhVCYOpDykyAvTYIsJyzN6YCYnq5Ffj2guQ==", null, false, "83c1f1f2-1bac-4915-a45d-af696a6cf7d7", "123 Infinity Way", false, "admin@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "ProductType",
@@ -297,9 +297,9 @@ namespace Bangazon.Migrations
                 columns: new[] { "PaymentTypeId", "AccountNumber", "DateCreated", "Description", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "86753095551212", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "American Express", "8c7ad694-6abd-4ba8-a121-93a5cf64d2a4" },
-                    { 2, "4102948572991", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Discover", "8c7ad694-6abd-4ba8-a121-93a5cf64d2a4" },
-                    { 3, "1234567891234", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Southwest", "8c7ad694-6abd-4ba8-a121-93a5cf64d2a4" }
+                    { 1, "86753095551212", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "American Express", "d1344930-72b7-4b3f-90b5-de2009898710" },
+                    { 2, "4102948572991", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Discover", "d1344930-72b7-4b3f-90b5-de2009898710" },
+                    { 3, "1234567891234", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Southwest", "d1344930-72b7-4b3f-90b5-de2009898710" }
                 });
 
             migrationBuilder.InsertData(
@@ -307,19 +307,19 @@ namespace Bangazon.Migrations
                 columns: new[] { "ProductId", "City", "DateCreated", "Description", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
                 values: new object[,]
                 {
-                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "For Sitting", 400.0, 1, 5, "Brown Leather Couch", "8c7ad694-6abd-4ba8-a121-93a5cf64d2a4" },
-                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Plays CDs", 20.0, 2, 3, "CD Player", "8c7ad694-6abd-4ba8-a121-93a5cf64d2a4" }
+                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "For Sitting", 400.0, 1, 5, "Brown Leather Couch", "d1344930-72b7-4b3f-90b5-de2009898710" },
+                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Plays CDs", 20.0, 2, 3, "CD Player", "d1344930-72b7-4b3f-90b5-de2009898710" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Order",
                 columns: new[] { "OrderId", "DateCompleted", "DateCreated", "PaymentTypeId", "UserId" },
-                values: new object[] { 2, new DateTime(2018, 10, 15, 14, 59, 34, 49, DateTimeKind.Local), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null });
+                values: new object[] { 2, new DateTime(2018, 10, 15, 16, 2, 11, 742, DateTimeKind.Local), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "d1344930-72b7-4b3f-90b5-de2009898710" });
 
             migrationBuilder.InsertData(
                 table: "Order",
                 columns: new[] { "OrderId", "DateCompleted", "DateCreated", "PaymentTypeId", "UserId" },
-                values: new object[] { 1, new DateTime(2018, 10, 15, 14, 59, 34, 44, DateTimeKind.Local), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, null });
+                values: new object[] { 1, new DateTime(2018, 10, 15, 16, 2, 11, 738, DateTimeKind.Local), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "d1344930-72b7-4b3f-90b5-de2009898710" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

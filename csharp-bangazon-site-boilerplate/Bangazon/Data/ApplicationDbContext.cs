@@ -132,12 +132,14 @@ namespace Bangazon.Data {
                 OrderId = 1,
                 DateCompleted = DateTime.Now,
                 PaymentTypeId = 3,
+                UserId = user.Id
             },
             new Order()
             {
                 OrderId = 2,
                 DateCompleted = DateTime.Now,
-                PaymentTypeId = 1
+                PaymentTypeId = 1,
+                UserId = user.Id
             }
             );
 
