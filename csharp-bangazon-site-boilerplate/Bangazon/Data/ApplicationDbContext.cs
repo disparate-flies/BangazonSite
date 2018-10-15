@@ -78,6 +78,37 @@ namespace Bangazon.Data {
                 }
             );
 
+            modelBuilder.Entity<ProductType>().HasData(
+                new ProductType()
+                {
+                    ProductTypeId = 1,
+                    Label = "Electronics",
+                    Quantity = 3
+                },
+                new ProductType()
+                {
+                    ProductTypeId = 2,
+                    Label = "Furniture",
+                    Quantity = 3
+                }
+            );
+
+            modelBuilder.Entity<Product>().HasData(
+            new Product()
+            {
+                ProductId = 1,
+                DateCreated = '2010/01/20',
+                Description = "American Express",
+             
+            },
+            new Product()
+            {
+                ProductId = 2,
+                Label = "Furniture",
+                Quantity = 3
+            }
+        );
+
 
         }
     }
