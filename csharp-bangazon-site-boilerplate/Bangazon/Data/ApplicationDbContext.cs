@@ -63,6 +63,8 @@ namespace Bangazon.Data {
             modelBuilder.Entity<ApplicationUser> ().HasData (user);
 
 
+
+
             modelBuilder.Entity<PaymentType> ().HasData (
                 new PaymentType() {
                     PaymentTypeId = 1,
@@ -75,9 +77,71 @@ namespace Bangazon.Data {
                     UserId = user.Id,
                     Description = "Discover",
                     AccountNumber = "4102948572991"
+                },
+                new PaymentType()
+                {
+                PaymentTypeId = 3,
+                UserId = user.Id,
+                Description = "Southwest",
+                AccountNumber = "1234567891234"
+                }
+
+            );
+
+            modelBuilder.Entity<ProductType>().HasData(
+                new ProductType()
+                {
+                    ProductTypeId = 1,
+                    Label = "Furniture",
+                    Quantity = 3
+                },
+                new ProductType()
+                {
+                    ProductTypeId = 2,
+                    Label = "Electronics",
+                    Quantity = 3
                 }
             );
 
+            modelBuilder.Entity<Product>().HasData(
+            new Product()
+            {
+                ProductId = 1,
+                Description = "Plays CDs",
+                Quantity = 3,
+                Title = "CD Player",
+                Price = 20.00,
+                ProductTypeId = 2,
+                UserId = user.Id
+            },
+            new Product()
+            {
+                ProductId = 2,
+                Description = "For Sitting",
+                Quantity = 5,
+                Title = "Brown Leather Couch",
+                Price = 400.00,
+                ProductTypeId = 1,
+                UserId = user.Id
+            }
+        );
+
+            modelBuilder.Entity<Order>().HasData(
+            new Order()
+            {
+                OrderId = 1,
+                DateCompleted = DateTime.Now,
+                PaymentTypeId = 3,
+                UserId = user.Id
+            },
+            new Order()
+            {
+                OrderId = 2,
+                DateCompleted = DateTime.Now,
+                PaymentTypeId = 1,
+                UserId = user.Id
+            }
+            );
 
         }
     }
