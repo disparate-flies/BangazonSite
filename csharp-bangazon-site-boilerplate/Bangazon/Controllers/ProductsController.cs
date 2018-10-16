@@ -61,6 +61,9 @@ namespace Bangazon.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProductId,DateCreated,Description,Quantity,Title,Price,UserId,City,ProductTypeId")] Product product)
         {
+            // Remove the user from the model validation because it is
+            // not information posted in the form
+            ModelState.Remove("User");
             if (ModelState.IsValid)
             {
                 _context.Add(product);
@@ -102,6 +105,9 @@ namespace Bangazon.Controllers
                 return NotFound();
             }
 
+            // Remove the user from the model validation because it is
+            // not information posted in the form
+            ModelState.Remove("User");
             if (ModelState.IsValid)
             {
                 try
