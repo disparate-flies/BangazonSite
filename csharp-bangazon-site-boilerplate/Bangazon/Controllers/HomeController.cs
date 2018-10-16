@@ -12,7 +12,7 @@ namespace Bangazon.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return View(Product.ProductId.OrderByDescending(x => x.DateCreated).Take(20).ToList());
         }
 
         public IActionResult About()
