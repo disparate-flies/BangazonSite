@@ -1,4 +1,4 @@
-﻿@model Bangazon.Models.HomeProductViewModel
+﻿@model IEnumerable<Bangazon.Models.Product>
 
 @{
     ViewData["Title"] = "Latest Products";
@@ -10,22 +10,31 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.RecentProducts)
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @*you will use model.RecentProducts here bc you are iterating over a list inside the model and not the model itself*@
-        @foreach (var item in Model.RecentProducts)
+        @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    <a asp-action="Details" asp-route-id="@item.ProductId"> @Html.DisplayFor(modelItem => item.Title)</a>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
                 </td>
             </tr>
         }
     </tbody>
 </table>
-
-@*you will NEVER use a IEnumerable when pulling data from a viewModel instead of directly from a model*@ 
