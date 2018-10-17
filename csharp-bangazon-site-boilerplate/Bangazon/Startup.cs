@@ -39,9 +39,6 @@ namespace Bangazon {
                 .AddDefaultTokenProviders ();
 
             services.AddMvc ().SetCompatibilityVersion (CompatibilityVersion.Version_2_1);
-
-    services.AddDbContext<BangazonContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("BangazonContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
