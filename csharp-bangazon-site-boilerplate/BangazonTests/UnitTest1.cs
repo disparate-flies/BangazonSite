@@ -56,7 +56,7 @@ namespace BangazonTests
 
             // Assert
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Assert.Matches("&copy; 2017 - Bangazon", content);
+            Assert.Matches("&copy; 2018 - Bangazon", content);
             Assert.Equal("text/html; charset=utf-8",
                 response.Content.Headers.ContentType.ToString());
         }
