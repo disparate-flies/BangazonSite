@@ -22,9 +22,7 @@ namespace Bangazon.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Product.Include(p => p.ProductType).Include(p => p.User);
-            return View(await applicationDbContext.ToListAsync());
-
-            //return View();
+            return View(await applicationDbContext.OrderByDescending(x => x.DateCreated).Take(20).ToListAsync());
         }
 
         public IActionResult About()
