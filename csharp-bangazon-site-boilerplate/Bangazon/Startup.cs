@@ -14,6 +14,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+
+
 namespace Bangazon {
     public class Startup {
         public Startup (IConfiguration configuration) {

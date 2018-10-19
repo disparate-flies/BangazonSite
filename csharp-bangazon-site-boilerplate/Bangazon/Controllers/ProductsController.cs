@@ -61,11 +61,14 @@ namespace Bangazon.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProductId,DateCreated,Description,Quantity,Title,Price,UserId,City,ProductTypeId")] Product product)
         {
+            // Remove the user from the model validation because it is
+            // not information posted in the form
+            ModelState.Remove("User");
             if (ModelState.IsValid)
             {
                 _context.Add(product);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var details = await _context.SaveChangesAsync();
+                return RedirectToAction("Details", new {id = product.ProductId});
             }
             ViewData["ProductTypeId"] = new SelectList(_context.ProductType, "ProductTypeId", "Label", product.ProductTypeId);
             ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", product.UserId);
@@ -102,6 +105,9 @@ namespace Bangazon.Controllers
                 return NotFound();
             }
 
+            // Remove the user from the model validation because it is
+            // not information posted in the form
+            ModelState.Remove("User");
             if (ModelState.IsValid)
             {
                 try
